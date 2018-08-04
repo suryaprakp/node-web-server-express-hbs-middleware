@@ -3,6 +3,7 @@ const hbs = require('hbs');
 const fs = require('fs');
 
 var app = express();
+var port = process.env.PORT || 3000;
 
 hbs.registerPartials(__dirname+'/views/partials');
 app.set('view engine','hbs'); //set view engine type
@@ -20,9 +21,9 @@ app.use((req,res,next)=>{
 	next();
 });
 
-app.use((req,res,next)=>{
+/*app.use((req,res,next)=>{
 	res.render('maintainance.hbs');
-});
+});*/
 
 app.use(express.static(__dirname+'/public')); // executes .use in order , so keeping in the end 
 
@@ -58,6 +59,6 @@ app.get('/bad',(req,res)=>{
 	})
 });	
 
-app.listen(3000,()=>{
-	console.log("Server listening at 3000 port");
+app.listen(port,()=>{
+	console.log(`Server listening at port ${port}`);
 });
